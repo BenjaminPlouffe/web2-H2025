@@ -32,9 +32,36 @@ do {
     switch (choix) {
         case "1":
             //Action / appel de fonction pour affichage de la liste complete
+            console.log(fruitsDisponibles);
             break;
         case "2":
-
+            console.log("MENU TRIE");
+            OPTIONS_MENU_FILTRER.forEach( (element,index) => console.log(`${index + 1}. ${element}`));
+            choix = prompt("Votre choix : ").trim();
+            console.log(choix);
+            switch (choix) {
+                case "1":
+                    
+                    break;
+                case "2":
+                    
+                    break;
+                default:
+                    console.log("Choix invalide.");
+                    break;
+                }
+            break;
+        case "3":
+        
+            break;
+        case "4":
+        
+            break;
+        case "5":
+        
+            break;
+        case "6":
+        
             break;
         case "7":
             break;
