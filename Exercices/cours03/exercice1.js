@@ -28,3 +28,13 @@ console.log(produit2);
 // c
 let sommeProduitsTotal =tabProduits.reduce((sommeProduits, element) => parseInt(sommeProduits) + parseInt(element.prix), 0);
 console.log(sommeProduitsTotal);
+
+// d
+
+afficherProduits(tabProduits)
+
+function afficherProduits(tabProduits) {
+    tabProduits.forEach((table,element) => {
+            console.log(element);
+    });
+} 
