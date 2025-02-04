@@ -41,10 +41,10 @@ do {
             console.log(choix);
             switch (choix) {
                 case "1":
-                    
+                    console.log(trieMax(fruitsDisponibles));
                     break;
                 case "2":
-                    
+                    console.log(fruitsDisponibles.filter( element => element.includes("oi")));
                     break;
                 default:
                     console.log("Choix invalide.");
@@ -71,3 +71,12 @@ do {
     }
     
 } while (choix != "7");
+
+function trieMax(_array4 =  []){
+    const trieMax = _array4.filter( element => element.length >= 5 );
+    return trieMax;
+}
+function map(_array1 = []){
+    const carre = _array1.map(element => element);
+    return carre;
+    }
