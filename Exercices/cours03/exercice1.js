@@ -22,7 +22,7 @@ const tabProduits =[produit1,produit2,produit3,produit4,]
 
 // b
 delete produit2.prix;
-produit2.prix = "200";
+produit2.prix = 200;
 console.log(produit2);
 
 // c
@@ -33,8 +33,16 @@ console.log(sommeProduitsTotal);
 
 afficherProduits(tabProduits)
 
-function afficherProduits(tabProduits) {
-    tabProduits.forEach((table,element) => {
-            console.log(element);
+function afficherProduits(_tableau=[]){
+    _tableau.forEach((element, index, tableau) => {
+        for(const propriete in element) {
+            console.log(element[propriete]);
+        }
     });
-} 
+}
+
+function trierParNom(_tableau=[]){
+    _tableau.sort( (element1, element2) => element1.nom.localeCompare(element2.nom));
+}
+trierParNom(tabProduits)
+afficherProduits(tabProduits)
