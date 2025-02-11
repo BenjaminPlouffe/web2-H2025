@@ -12,4 +12,4 @@ class Film extends Ouvrage {
     }
 }
 
-export default {Film};
+export {Film};

@@ -7,8 +7,8 @@ const prompt = promptSync();
 // Début du programme du menu principale
 
 import Ouvrage from "./Ouvrage.js";
-import Film from "./ouvrages/Film.js";
-import Livre from "./ouvrages/Livre.js"; 
+import { Film } from "./ouvrages/Film.js";
+import { Livre } from "./ouvrages/Livre.js"; 
 
 // Tableau d'ouvrages (base de données initiale OBLIGATIORE)
 const listeOuvrage = [
@@ -30,10 +30,10 @@ const listeOuvrage = [
 
 
 do {
-    inputPrincipale = choixMenuPrincipale();
+    let inputPrincipale = choixMenuPrincipale();
     switch (inputPrincipale) {
         case "1":
-        inputAffichage = choixMenuAffichage();
+        let inputAffichage = choixMenuAffichage();
         switch (inputAffichage) {
             case "1":            
             affichage(listeOuvrage)    
@@ -41,7 +41,7 @@ do {
             case "2":                
                 break;
             case "3":   
-            inputTrie = choixMenuTrie();
+            let inputTrie = choixMenuTrie();
             switch (inputTrie) {
                 case  "1":
                     break;
@@ -58,7 +58,7 @@ do {
         }
             break;
         case "2":
-            inputAjout = choixMenuAjout();
+            let inputAjout = choixMenuAjout();
             switch (inputAjout) {
                 case  "1":
                     break;

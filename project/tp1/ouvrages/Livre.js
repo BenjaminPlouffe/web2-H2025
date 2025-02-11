@@ -12,4 +12,4 @@ class Livre extends Ouvrage {
     }
 }
 
-export default {Livre};
+export {Livre};
