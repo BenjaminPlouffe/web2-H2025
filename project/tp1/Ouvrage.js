@@ -9,6 +9,8 @@ export default class Ouvrage {
     disponibilite(etat) {
         if (etat === true){
             this.dispo = true
+        } else {
+            this.dispo = false
         }
         return this.dispo;
     }

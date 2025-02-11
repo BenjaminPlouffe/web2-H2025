@@ -1,4 +1,4 @@
-import Ouvrage from "../ouvrages";
+import Ouvrage from "../Ouvrage.js";
 
 class Film extends Ouvrage {
     constructor(titre='N/D', anneeSortie=0,genre='N/D',dispo=false,realisateur="N/D", duree=0) {
@@ -12,4 +12,4 @@ class Film extends Ouvrage {
     }
 }
 
-export {Film};
+export default {Film};

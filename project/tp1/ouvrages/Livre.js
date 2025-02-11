@@ -1,4 +1,4 @@
-import Ouvrage from "../ouvrages";
+import Ouvrage from "../Ouvrage.js";
 
 class Livre extends Ouvrage {
     constructor(titre='N/D', anneeSortie=0,genre='N/D',dispo=false,auteur="N/D", nbPage=0) {
@@ -12,4 +12,4 @@ class Livre extends Ouvrage {
     }
 }
 
-export {Livre};
+export default {Livre};

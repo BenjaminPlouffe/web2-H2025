@@ -6,9 +6,9 @@ const prompt = promptSync();
 
 // Début du programme du menu principale
 
-import Ouvrage from "./ouvrages.js";
-import Film from "./ouvrages/films.js";
-import Livre from "./ouvrages/livres.js"; 
+import Ouvrage from "./Ouvrage.js";
+import Film from "./ouvrages/Film.js";
+import Livre from "./ouvrages/Livre.js"; 
 
 // Tableau d'ouvrages (base de données initiale OBLIGATIORE)
 const listeOuvrage = [
