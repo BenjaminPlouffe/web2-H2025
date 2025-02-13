@@ -26,26 +26,44 @@ const listeOuvrage = [
     new Film("The Big Lebowski", 1998, "Comédie", false, "Joel et Ethan Coen", 117),
     new Livre("Gatsby le Magnifique", 1925, "Roman", true, "F. Scott Fitzgerald", 180),
     new Film("Star Wars : Episode IV - Un nouvel espoir", 1977, "Science-fiction", false, "George Lucas", 121),
-];
+]; 
+
+const affichage = (_tableau=[]) => {
+    _tableau.forEach((element, index, tableau) => {
+        console.log((index + 1) + " " + element);
+    });
+};
+let inputPrincipale;
+let inputAffichage;
+let inputTrie;
+let inputAjout;
 
 
 do {
-    let inputPrincipale = choixMenuPrincipale();
+    inputPrincipale = choixMenuPrincipale();
     switch (inputPrincipale) {
         case "1":
-        let inputAffichage = choixMenuAffichage();
+        inputAffichage = choixMenuAffichage();
         switch (inputAffichage) {
-            case "1":            
-            affichage(listeOuvrage)    
+            case "1":  
+            if (listeOuvrage.length === 0) {
+            console.log("La liste est vide");
+            } else {
+            affichage(listeOuvrage);
+            }
                 break;
-            case "2":                
+            case "2":
+            let genre = prompt("Quel est le genre que vous recherchez? :");
+            affichage(filter(genre,listeOuvrage));
                 break;
             case "3":   
-            let inputTrie = choixMenuTrie();
+            inputTrie = choixMenuTrie();
             switch (inputTrie) {
                 case  "1":
+                    affichage(trierNom(listeOuvrage));
                     break;
                 case  "2":
+                    affichage(trierAnnee(listeOuvrage));
                     break;
                 default:
                     console.log("Choix invalide");
@@ -58,11 +76,25 @@ do {
         }
             break;
         case "2":
-            let inputAjout = choixMenuAjout();
+            inputAjout = choixMenuAjout();
             switch (inputAjout) {
                 case  "1":
+                    let titre = prompt("Quel est le titre du livre?");
+                    let anneeSortie = prompt("En quel année le livre est-il sortie?");
+                    let genre = prompt("Quel est le genre du livre?");
+                    let dispo = true;
+                    let auteur = prompt("Quel est l'auteur du livre?");
+                    let nbPage = prompt("Combien de page le livre contien?");
+                    ajouterLivre(listeOuvrage,titre,anneeSortie,genre,dispo,auteur,nbPage);
                     break;
                 case  "2":
+                    let titreFilm = prompt("Quel est le titre du film?");
+                    let anneeSortieFilm = prompt("En quel année le film est-il sortie?");
+                    let genreFilm = prompt("Quel est le genre du film?");
+                    let dispoFilm = true;
+                    let realisateur = prompt("Quel est le réaliseur du film?");
+                    let duree = prompt("Quel est la durée du film?");
+                    ajouterFilm(listeOuvrage,titreFilm,anneeSortieFilm,genreFilm,dispoFilm,realisateur,duree);
                     break;
                 default:
                     console.log("Choix invalide");
@@ -70,12 +102,16 @@ do {
             }
             break;
         case "3":
+            modifier(listeOuvrage)
             break;
         case "4":
+            supprimer(listeOuvrage)
             break;
         case "5":
+            emprunt(listeOuvrage)
             break;
         case "6":
+            statistique(listeOuvrage)
             break;
         case "7":
             break;
@@ -128,8 +164,86 @@ function choixMenuAjout() {
 
 //section affichage
 
-const affichage = (_tableau=[]) => {
-    _tableau.forEach((element, index, tableau) => {
-    console.log((index + 1) + toString(element));
-    });
+function filter(_string, _array) {
+    return _array.filter((e) => e.genre.toLowerCase().match(_string.toLowerCase()));
+  }
+
+function trierNom(_tableau){
+   return _tableau.sort( (element1, element2) => element1.titre.localeCompare(element2.titre));
+};
+
+function trierAnnee(_tableau){
+    return _tableau.sort( (element1, element2) => element1.anneeSortie - element2.anneeSortie);
+};
+
+function ajouterLivre(_tableau,titre,anneeSortie,genre,dispo,auteur,nbPage) {
+    console.log("Votre livre a été ajouté a la liste.");
+    return _tableau.push(new Livre(titre,anneeSortie,genre,dispo,auteur,nbPage));
+};
+
+function ajouterFilm(_tableau,titreFilm,anneeSortieFilm,genreFilm,dispoFilm,realisateur,duree){
+console.log("Votre film a été ajouté a la liste.");
+return _tableau.push(new Film(titreFilm,anneeSortieFilm,genreFilm,dispoFilm,realisateur,duree));
+};
+
+function supprimer(_tableau){
+    affichage(_tableau);
+    let ouvrageSupprimer = parseInt(prompt("Saisissez le numéro de l'ouvrage que vous voulez Supprimé parmis les "+ _tableau.length + " ouvrages. :" ));
+    if (ouvrageSupprimer > 0 && ouvrageSupprimer <= _tableau.length) {
+    _tableau.splice((ouvrageSupprimer-1), 1);
+    } else{
+    console.log("Choix invalide");
+} 
 }
+
+function modifier(_tableau){
+    affichage(_tableau);
+    let ouvrageModifier = parseInt(prompt("Saisissez le numéro de l'ouvrage que vous voulez modifiez parmis les "+ _tableau.length + " ouvrages. :" ));
+    if (ouvrageModifier > 0 && ouvrageModifier <= _tableau.length) { 
+        if (_tableau[ouvrageModifier-1] instanceof Livre) {
+            let titre = prompt("Quel est le titre du livre?");
+                    let anneeSortie = prompt("En quel année le livre est-il sortie?");
+                    let genre = prompt("Quel est le genre du livre?");
+                    let dispo = true;
+                    let auteur = prompt("Quel est l'auteur du livre?");
+                    let nbPage = prompt("Combien de page le livre contien?");
+                    _tableau.splice((ouvrageModifier-1), 1,new Livre(titre,anneeSortie,genre,dispo,auteur,nbPage));
+        }else{
+            let titreFilm = prompt("Quel est le titre du film?");
+            let anneeSortieFilm = prompt("En quel année le film est-il sortie?");
+            let genreFilm = prompt("Quel est le genre du film?");
+            let dispoFilm = true;
+            let realisateur = prompt("Quel est le réaliseur du film?");
+            let duree = prompt("Quel est la durée du film?");
+            _tableau.splice((ouvrageModifier-1), 1, new Film(titreFilm,anneeSortieFilm,genreFilm,dispoFilm,realisateur,duree));
+        }
+    } else{
+        console.log("Choix invalide");
+    } 
+};
+
+function emprunt(_tableau){
+affichage(_tableau);
+let ouvrageEmprunt = parseInt(prompt("Saisissez le numéro de l'ouvrage que vous voulez modifiez parmis les "+ _tableau.length + " ouvrages. :" ));
+if (ouvrageEmprunt > 0 && ouvrageEmprunt <= _tableau.length) {
+    if (_tableau[ouvrageEmprunt-1]===true) {
+        _tableau[ouvrageEmprunt-1].disponibilite(false)
+    } else{
+        _tableau[ouvrageEmprunt-1].disponibilite(true)
+    } 
+    } else{
+    console.log("Choix invalide");
+} 
+};
+
+function statistique(_tableau) {
+    console.log("Nombre total d'ouvrages : " + _tableau.length);
+    const tableau1 = _tableau.filter(e => e instanceof Livre); // tableau des managers
+    const tableau2 = _tableau.filter(e => e instanceof Film);
+    console.log("Ouvrages par type : \n- Livres : " + tableau1.length + "\n- Films : " + tableau2.length);
+    const occurrences = {};
+    _tableau.forEach(item => {
+    occurrences[item.genre] = (occurrences[item.genre] || 0) + 1;
+    });
+    console.log(occurrences);
+};

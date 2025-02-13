@@ -8,7 +8,7 @@ class Livre extends Ouvrage {
     }
 
     toString() {
-        return super.toString() + "auteur du livre : " + this.auteur + "nombre de page du livre : " + this.nbPage;
+        return super.toString() + " Auteur du livre : " + this.auteur + "Nombre de page du livre : " + this.nbPage;
     }
 }
 

@@ -8,7 +8,7 @@ class Film extends Ouvrage {
     }
 
     toString() {
-        return super.toString() + "réalisateur du film : " + this.realisateur + "durée du film : " + this.duree;
+        return super.toString() + " Réalisateur du film : " + this.realisateur + " Durée du film : " + this.duree;
     }
 }
 
