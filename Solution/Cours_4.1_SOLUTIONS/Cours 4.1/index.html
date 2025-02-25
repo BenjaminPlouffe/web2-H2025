@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulations du DOM</title>
+    <!-- Ajoutez le lien vers Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="">
+
+    <!-- Header -->
+    <header class="bg-dark text-white text-center py-5" id="entete">
+        <h1 id="h1" class="h1 ma-classe">Titre de la page</h1>
+        <p>Sous-titre de la page</p>
+    </header>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navigation">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">À propos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="container container-fluid mt-3 ">
+        <h2>Contenu principal</h2>
+        <p>Ceci est un paragraphe de texte.</p>
+
+        <!-- Div -->
+        <div class="row">
+            <div class="col-md-6">
+                <p>Contenu de la première colonne</p>
+            </div>
+            <div class="col-md-6">
+                <p>Contenu de la deuxième colonne</p>
+            </div>
+        </div>
+
+        <!-- Listes -->
+        <ul>
+            <li>Élément de liste 1</li>
+            <li>Élément de liste 2</li>
+            <li>Élément de liste 3</li>
+        </ul>
+
+        <ol>
+            <li>Élément ordonné 1</li>
+            <li>Élément ordonné 2</li>
+            <li>Élément ordonné 3</li>
+        </ol>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3" id="pied">
+        <p>Droit d'auteur © 2024 Nom de votre entreprise</p>
+    </footer>
+
+    <!-- Ajoutez le lien vers Bootstrap JS et Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./js/e1.js"></script>
+    <!-- <script src="./js/e2.js"></script> -->
+</body>
+
+</html>
