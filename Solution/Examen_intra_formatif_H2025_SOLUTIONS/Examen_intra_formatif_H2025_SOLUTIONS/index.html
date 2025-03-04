@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr-ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./img/favicon.png" rel="icon" type="image/png">
+    <title>Examen formatif</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    <link rel="stylesheet" href="css/style.css"> 
+</head>
+<body>
+    <div class="container-fluid h-100 vh-100" data-choice="1">
+        <!-- Faux menu -->
+        <div class="row text-center">
+            <div class="col-12">
+                <img src="fauxMenu.PNG" alt="" class="img-fluid">
+            </div>
+        </div>
+        <!-- TITRE -->
+        <div class="row text-center">
+            <div class="col-12 mt-3">
+                <h1 id="title" class="couleurPi">Raspberry Pi</h1> <!-- Classe couleur (voir le fichier css) -->
+                <hr/>
+            </div>
+        </div>
+
+        <div class="row h-50">
+            <!-- Partie gauche -->
+            <div class="col-md-4">
+                <h2>Image du nano-ordinateur</h2>
+                <img id="image" src="./img/raspberryPi.jpg" alt="" class=img-fluid>
+            </div>
+
+            <!-- Partie centrale -->
+            <div class="col-md-4">
+                <h2>Caractéristiques</h2>
+                <img id="logo" src="./img/piLogo.png" alt="" class="img-fluid" width="200px">
+                <div id="divDescription" class="textPi"> <!-- Classe text (voir le fichier css) -->
+                    <p>Broadcom BCM2711, Quad core Cortex-A72 (ARM v8) 64-bit SoC @ 1.5GHz.</p> 
+                    <p>8GB SDRA</p>
+                    <p>2.4 GHz and 5.0 GHz IEEE 802.11ac wireless, Bluetooth 5.0, BLE.</p>
+                    <p>Gigabit Ethernet.</p>
+                    <p>2 USB 3.0 ports; 2 USB 2.0 ports.</p>
+                </div> <!-- Les spécifications ci-dessus sont présentées dans le fichier descriptions.js -->
+            </div>
+
+            <!-- Partie droite -->
+            <div id="divForm" class="col-md-4 bgPi"> <!-- Classe bg (voir le fichier css) -->
+                <h2 class="text-white">Calculateur de prix</h2>  
+                
+                <form id="form">
+                    <div>
+                        <select id="selectComputerType" class="form-select" aria-label="Default">
+                            <option value="NaN">Raspberry Pi</option>
+                            <option value="50">Arduino</option>
+                            <option value="40">Microbit</option>
+                          </select>
+                    </div>
+                    <br>
+                    <div id="divForRaspberryRam">
+                        <select id="selectRamType" class="form-select" aria-label="Default">
+                            <option value="80">8 Gigs</option>
+                            <option value="60">4 Gigs</option>
+                          </select>
+                    </div>
+                    <br>
+                    <div class="form-control-lg">
+                        <label for="quantity">Quantité(s)</label>
+                        <input id="quantity" name="quantity" type="number" min="1" value="1" required>
+                    </div>
+                    <br>
+                    <button class="btn btn-primary" type="submit">Calculer</button>
+                </form>
+            </div>
+            
+        </div>
+        <hr/>
+        <button class="btn btn-primary" id="btnPreviousChoice">Choix précédent</button>
+        <button class="btn btn-primary" id="btnNextChoice">Choix suivant</button>
+    </div>
+
+    <script defer src="https://kit.fontawesome.com/e2ecca9b14.js" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script defer type="module" src="./js/RasPiBot.js"></script>
+
+</body>
+</html>

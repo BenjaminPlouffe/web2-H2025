@@ -1,0 +1,8 @@
+Exercices - cours 6.2 - Énoncé
+
+Pour cette série d'exercice, vous devez compléter les lignes de code manquantes indiquées à l'endroit où il y a des commentaires.
+(Toutes les modifications à faire se retrouvent dans les fichiers .js -> les commentaires dans le html ne sont que des explications pour vous aider à comprendre la structure des listeners)
+
+La structure de cet exercice est basée sur le design pattern 'MVC'.
+Pour plus d'info sur le pattern 'MVC', vous pouvez consulter la vidéo suivante ; 
+https://www.youtube.com/watch?v=DUg2SWWK18I&ab_channel=WebDevSimplified

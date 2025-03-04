@@ -1,0 +1,44 @@
+body,html {
+    height:100%;
+}
+
+.bgPi{
+    background-color: crimson;
+}
+.couleurPi {
+    color:crimson;
+}
+
+.textPi{
+    color:crimson;
+    font-size: 18px;
+    p { margin:0 }
+}
+
+.bgArduino{
+    background-color: lightblue;
+}
+
+.couleurArduino {
+    color :lightblue;
+}
+
+.textArduino{
+    color:lightblue;;
+    font-size: 18px;
+    p { margin:0 }
+}
+
+.bgMicrobit{
+    background-color: greenyellow;
+}
+
+.couleurMicrobit {
+    color:greenyellow;
+}
+
+.textMicrobit{
+    color :greenyellow;
+    font-size: 18px;
+    p { margin:0 }
+}
