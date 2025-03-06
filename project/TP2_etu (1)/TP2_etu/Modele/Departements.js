@@ -17,7 +17,6 @@ constructor(matricule ='N/D',prenom='N/D',nom='N/D',salaire=0,departement='N/D',
 class Employees{
     constructor(list = []){
         this.list = list;
-        
     }
 }
 
