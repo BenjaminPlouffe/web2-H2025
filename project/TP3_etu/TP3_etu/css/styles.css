@@ -1,0 +1,39 @@
+body {
+    background: linear-gradient(135deg, #f0f8ff, #ffe4e1);
+    min-height: 100vh;
+}
+
+header {
+    background-color: #ffcb05;
+    padding: 1rem;
+}
+
+header h1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.pokemon-buttons button {
+    margin: 0.2rem;
+}
+
+.card-title {
+    color: #2a75bb;
+}
+
+.card {
+    background-color: #f8f9fa;
+    border-radius: 1rem;
+}
+
+.badge {
+    margin-right: 0.5rem;
+}
+
+.clr-bleu {
+    color: #2a75bb;
+}
+
+dt {
+    font-style: italic;
+}

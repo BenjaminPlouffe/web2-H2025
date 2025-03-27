@@ -1,0 +1,22 @@
+// À importer dans votre modèle
+export const _pokemonTypes = [
+    {id: 0, nom:"Type de pokémon"},
+    {id: 1, nom:"Normal (normal)"},
+    {id: 2, nom:"Combattant (fighting)"},
+    {id: 3, nom:"Volant (flying)"},
+    {id: 4, nom:"Poison (poison)"},
+    {id: 5, nom:"Terrestre (ground)"},
+    {id: 6, nom:"Roche (rock)"},
+    {id: 7, nom:"Insecte (bug)"},
+    {id: 8, nom:"Fantôme (ghost)"},
+    {id: 9, nom:"Acier (steel)"},
+    {id: 10, nom:"Feu (fire)"},
+    {id: 11, nom:"Eau (water)"},
+    {id: 12, nom:"Herbe (grass)"},
+    {id: 13, nom:"Électrique (electric)"},
+    {id: 14, nom:"Psychique (Psychic)"},
+    {id: 15, nom:"Glace (ice)"},
+    {id: 16, nom:"Dragon (dragon)"},
+    {id: 17, nom:"Sombre (dark)"},
+    {id: 18, nom:"Féerique (fairy)"},
+];
