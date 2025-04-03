@@ -1,11 +1,10 @@
-import Vue from "../Vues/View";
+import { View } from "../Vues/View";
 import { _pokemonTypes } from "../Modeles/pokemonTypes";
 
-    const vue = new Vue;
-
 document.addEventListener('DOMContentLoaded', () => {
+    
+    const vue = new View();
 
     //chargement de la liste 
-    vue.chargementListe(_pokemonTypes)
-
+    vue.chargementListe(_pokemonTypes);
 });
