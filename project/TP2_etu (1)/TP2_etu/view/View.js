@@ -1,91 +1,120 @@
 export class View {
 
-
-  toggleDisplayForEmployeeFormDiv() {
+  toggleDisplayForModifier(list){
+    resetForm(employeeFormDiv);
     const divFormAddProduct = document.getElementById('employeeFormDiv');
     divFormAddProduct.classList.remove('d-none');
-    const divFormDeleteProduct = document.getElementById('employeeFormDiv');
-    hideAndResetForm(divFormDeleteProduct);
+    const matricule = document.getElementById('matricule');
+    const prenom = document.getElementById('prenom');
+    const nom = document.getElementById('nom');
+    const salaire = document.getElementById('salaire');
+    const departement = document.getElementById('departement');
+    const courriel = document.getElementById('courriel');
+    const retraite = document.getElementById('retraite');
+    const dateRetraite = document.getElementById('dateRetraite');
+    matricule.value = list[id-1].matricule;
+    prenom.value = list[id-1].prenom;
+    nom.value = list[id-1].nom;
+    salaire.value = list[id-1].salaire;
+    departement.value = list[id-1].departement;
+    courriel.value = list[id-1].courriel;
+    retraite.value = list[id-1].retraite;
+    dateRetraite.value = list[id-1].dateRetraite;
+
+
+  }
+  toggleDisplayForEmployeeFormDiv() {
+    resetForm(employeeFormDiv);
+    const divFormAddProduct = document.getElementById('employeeFormDiv');
+    divFormAddProduct.classList.toggle('d-none');
   }
 
-  toggleDisplayForDivFormDeleteProduct() {
-    //On doit chercher le div à 'afficher' en question
-    const divFormDeleteProduct = document.getElementById('divFormDeleteProduct');
-    //On doit enlever la classe 'd-none' pour afficher le div en question
-    divFormDeleteProduct.classList.remove('d-none');
-    //On doit chercher le div à 'cacher' (au cas où il était lui-même 'visible')
-    const divFormAddProduct = document.getElementById('divFormAddProduct');
-    //On doit 'cacher' ce div et 'reset' son formulaire associé (function hideAndResetForm).
-    hideAndResetForm(divFormAddProduct);
+  closeForm(evt){
+    const divFormAddProduct = document.getElementById('employeeFormDiv');
+    divFormAddProduct.classList.add('d-none');
+    resetForm(employeeFormDiv)
   }
 
-  closeForm(evt) {
-    //On doit 'cacher' le div assocé à l'événement et 'reset' son formulaire (function hideAndResetForm) => Utiliser les propriétés target 
-    // et parentElement ; même si elles sont non reconnues par intellisense, elles fonctionnent
-    hideAndResetForm(evt.target.parentElement);
-  }
-
-  resetFilterPrice() {
-    //On doit chercher l'input associé au filtre.
-    const filterPrice = document.getElementById('numberFilterPrice');
-    //On doit mettre la valeur de ce input à ""
-    filterPrice.value = "";
-  }
-
-  updateProductsTable(_products = []) {
-    //On doit chercher la table html où on y insérera les produits
-    const table = document.querySelector('#productsTable');
-    //On doit déclarer une variable (let) pour structurer les entrées de la table (les 'tableDatas')
+  updateTable(_empoyee = []) {
+    const table = document.querySelector('#employeeTable');
     let tableDatas;
-    //On doit réinitialiser les entrées de la table avant de la reconstruire (function resetTableDatas)
     resetTableDatas(table);
-    //On doit faire une boucle sur chaque produit de la liste _products faisant les actions spécifiées dans les commentaires suivants
-    _products.forEach(produit => {
-      //On doit affecter la variable pour les entrées de la table à [product.name, product.price, product.quantity]
-      tableDatas = [produit.name, produit.price, produit.quantity]
-      //On doit append ces entrées de table (function appendTableDatas)
+    _empoyee.forEach(employee => {
+      tableDatas = [employee.matricule, employee.nom + ", " + employee.prenom,employee.salaire,employee.departement,employee.courriel,employee.dateDeRetraite]  
       appendTableDatas(table, tableDatas);
     });
-    
   }
-}
 
-//Fonctions -----------------------------------------------------------------------------------------------------------------
+  toggleRetraite(){
+    const dateRetraite = document.getElementById('dateRetraite');
+    dateRetraite.value = '';
+    const divDateRetraite = document.getElementById('divDateRetraite');
+    divDateRetraite.classList.toggle('d-none');
+    dateRetraite.classList.remove('is-invalid');
+    dateRetraite.classList.remove('is-valid');
+  }
+
+
+/*   resetFilterPrice() {
+    const filterPrice = document.getElementById('numberFilterPrice');
+    filterPrice.value = "";
+  } */
+}
+let idModifieur = 0;
+function appendTableDatas(table = new HTMLElement(), tableDatas = []) {
+  const tbody = table.querySelector('tbody');
+  const tr = document.createElement('tr');
+  tbody.append(tr);
+  let td;
+  tableDatas.forEach(data => {
+    td = document.createElement('td');
+    td.innerText = data;
+    tr.append(td);
+  });
+  let td1 = document.createElement('td');
+  tr.append(td1);
+  let modifier;
+  
+  modifier = document.createElement('button');
+  modifier.classList.add('btn', 'btn-primary','btn-warning','js-modifier','modifier');
+  modifier.id = ++idModifieur;
+  modifier.innerText = "Modifier";
+  modifier.addEventListener('click', function() {
+    mainModifier(idModifieur);
+  });
+  td1.append(modifier);
+}
 function resetTableDatas(_table = new HTMLElement()) {
-  //On doit chercher le 'tbody' de cette table (querySelector)
   const tbody = _table.querySelector('tbody');
-  //On doit créer une nouvelle balise 'tbody'
   const nouveauTbody = document.createElement('tbody');
-  //On doit remplacer le 'tbody' existant par le nouveau 'tbody' vide (méthode replaceChild)
   _table.replaceChild(nouveauTbody, tbody);
 }
 
-function appendTableDatas(table = new HTMLElement(), tableDatas = []) {
-  //On doit chercher le 'tbody' de cette table (querySelector)
-  const tbody = table.querySelector('tbody');
-  //On doit créer une nouvelle balise 'tr'
-  const tr = document.createElement('tr');
-  //On doit append le 'tr' au 'tbody'
-  tbody.append(tr);
-  //On doit déclarer une variable (let) qui sera affectée à chaque data de la tableDatas.
-  let td;
-  //On doit faire une boucle sur chaque data de la tableDatas faisant les actions spécifiées dans les commentaires suivants
-  tableDatas.forEach(data => {
-    //On doit affecter la variable définie précédemment à une balise 'td' nouvellement créée
-    td = document.createElement('td');
-    //On doit affecter le innerText de la variable au data de la tableDatas
-    td.innerText = data;
-    //On doit append la nouvelle balise à la balise 'tr'
-    tr.append(td);
-  });
-  
-}
-
-function hideAndResetForm(parentDivOfForm = new HTMLElement()) {
-  //On doit ajouter la classe 'd-none' au div en paramètre
-  parentDivOfForm.classList.add('d-none');
-  //On doit chercher son 'form' qu'il contient (querySelector)
+function resetForm(parentDivOfForm = new HTMLElement()) {
   const form = parentDivOfForm.querySelector('form');
-  //On doit 'reset' le form (avec la méthode reset() => méthode non reconnue dans l'intellisense mais fonctionnelle)
+  const matricule = document.getElementById('matricule');
+  const prenom = document.getElementById('prenom');
+  const nom = document.getElementById('nom');
+  const salaire = document.getElementById('salaire');
+  const departement = document.getElementById('departement');
+  const courriel = document.getElementById('courriel');
+  const retraite = document.getElementById('retraite');
+  const dateRetraite = document.getElementById('dateRetraite');
+  form.classList.remove('was-validated');
+  matricule.classList.remove('is-valid');
+  prenom.classList.remove('is-valid');
+  nom.classList.remove('is-valid');
+  salaire.classList.remove('is-valid');
+  departement.classList.remove('is-valid');
+  courriel.classList.remove('is-valid');
+  retraite.classList.remove('is-valid');
+  dateRetraite.classList.remove('is-valid');
+  matricule.classList.remove('is-invalid');
+  prenom.classList.remove('is-invalid');
+  nom.classList.remove('is-invalid');
+  salaire.classList.remove('is-invalid');
+  courriel.classList.remove('is-invalid');
+  retraite.classList.remove('is-invalid');
+  dateRetraite.classList.remove('is-invalid');
   form.reset();
 }

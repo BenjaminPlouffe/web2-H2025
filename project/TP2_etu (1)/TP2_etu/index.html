@@ -20,7 +20,7 @@
         </div>
 
         <!-- Liste des employés -->
-        <table class="table table-striped">
+        <table class="table table-striped" id="employeeTable">
             <thead class="table-light">
                 <tr>
                     <th>Matricule</th>
@@ -35,16 +35,6 @@
             <tbody>
                 <!-- Exemple d'employé statique, à remplacer par du dynamique côté serveur -->
                 <tr>
-                    <td>A1234</td>
-                    <td>Dupont, Jean</td>
-                    <td>45000</td>
-                    <td>Informatique</td>
-                    <td>jean.dupont@compagnie.ca</td>
-                    <td>01/01/2020</td>
-                    <td>
-                        <!-- La classe js-modifier et le dataset peuvent servir à gérer le clic de ces boutons dans le contrôleur -->
-                        <button class="btn btn-warning btn-sm js-modifier" data-matricule="A1234">Modifier</button>
-                    </td>
                 </tr>
             </tbody>
         </table>
@@ -58,46 +48,45 @@
         <div class="d-none" id="employeeFormDiv">
             <!-- Modifier les attributs du formulaire pour que la validation Bootstrap puisse se faire -->
             <!-- Modifier les champs pour leur ajouter des attributs nécessaires à l'envoi et la validation -->
-            <form class="border border-success-subtle p-3">
+            <form class="border border-success-subtle p-3 needs-validation" novalidate>
                 <div class="mb-3">
                     <label for="matricule" class="form-label">Matricule</label>
-                    <input class="form-control" id="matricule">
-                    <div class="invalid-feedback"></div>
+                    <input class="form-control" id="matricule" name="matricule">
+                    <div class="invalid-feedback">Format requis : une majuscule suivie de 4 chiffres (ex: A1234)</div>
                 </div>
                 <div class="mb-3">
                     <label for="prenom" class="form-label">Prénom</label>
-                    <input class="form-control" id="prenom">
-                    <div class="invalid-feedback"></div>
+                    <input class="form-control" id="prenom" name="prenom">
+                    <div class="invalid-feedback">Le prénom est oubligatoire.</div>
                 </div>
                 <div class="mb-3">
                     <label for="nom" class="form-label">Nom</label>
-                    <input class="form-control" id="nom">
-                    <div class="invalid-feedback"></div>
+                    <input class="form-control" id="nom" name="nom">
+                    <div class="invalid-feedback">Le nom est oubligatoire.</div>
                 </div>
                 <div class="mb-3">
                     <label for="salaire" class="form-label">Salaire</label>
-                    <input class="form-control" id="salaire">
-                    <div class="invalid-feedback"></div>
+                    <input class="form-control" id="salaire" name="salaire">
+                    <div class="invalid-feedback">Un salaire >=0 est requis</div>
                 </div>
                 <div class="mb-3">
                     <label for="departement" class="form-label">Département</label>
-                    <!-- Remplir ce <select> avec les départements du fichier Departements.js via le contrôleur -->
-                    <select class="form-control" id="departement"></select>
+                    <select class="form-control" id="departement" name="departement"></select>
                     <div class="invalid-feedback"></div>
                 </div>
                 <div class="mb-3">
                     <label for="courriel" class="form-label">Courriel</label>
-                    <input class="form-control" id="courriel">
-                    <div class="invalid-feedback"></div>
+                    <input class="form-control" id="courriel" name="courriel">
+                    <div class="invalid-feedback">Un courriel au format prenom.nom@compagnie.ca est oubligatoire</div>
                 </div>                
                 <div class="mb-3">
-                    <input class="form-check-input" id="retraite">
+                    <input class="form-check-input" id="retraite" name="retraite" type="checkbox">
                     <label for="retraite" class="form-check-label">Retraité(e)</label>
                 </div>
                 <div class="mb-3 d-none" id="divDateRetraite">
                     <label for="dateRetraite">Date de départ</label>
-                    <input class="form-control" id="dateRetraite">
-                    <div class="invalid-feedback"></div>
+                    <input class="form-control" id="dateRetraite" name="dateRetraite">
+                    <div class="invalid-feedback">La date doit étre plus tot que celle d'aujourd'hui</div>
                 </div>
                 <!-- Dans le contrôleur, programmer la logique de ces 2 boutons -->
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
