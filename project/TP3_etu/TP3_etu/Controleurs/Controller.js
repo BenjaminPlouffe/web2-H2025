@@ -11,10 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-typeSelect.addEventListener("input",() =>{
+typeSelect.addEventListener("input",async() =>{
     const type = "https://pokeapi.co/api/v2/type/" + vue.getType();
     console.log(type);
-    initAsync(type);
+    const pokemon = await initAsync(type);
+        console.log(pokemon);
+    vue.affichageNom(pokemon);
 });
 
 closeCard.addEventListener("click",() =>{
@@ -22,11 +24,11 @@ closeCard.addEventListener("click",() =>{
     
 });
 
-async function initAsync(_type) {
+    export async function initAsync(_type) {
     try {
         let pokemon = await modele.getPokemonAsync(_type);
         console.log(pokemon);
-        vue.affichageNom(pokemon);
+        return pokemon;
 
     }
     catch(e) {

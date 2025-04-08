@@ -1,4 +1,4 @@
-import { retourControleurAbilite,retourControleurPokemon } from "../Controleurs/Controller.js";
+import { initAsync } from "../Controleurs/Controller.js";
 
 export class View {
 
@@ -31,7 +31,7 @@ export class View {
             button.setAttribute("data-pokemon-endpoint", pokemon.pokemon.url);
             button.setAttribute("data-is-active", "false");
             button.innerText = pokemon.pokemon.name;
-            button.addEventListener('click', () => {
+            button.addEventListener('click', async () => {
                 const currentState = button.getAttribute("data-is-active");
                 const cartePokemon = document.getElementById('divCard')
                 if (currentState === "true") {
@@ -46,7 +46,8 @@ export class View {
                         element.className = "btn btn-warning";
                         cartePokemon.classList.remove('d-none');
                     });
-                    retourControleurPokemon(pokemonUrl)
+                    const pokemonInfo = await initAsync(pokemonUrl)
+                    affichagePokemon(pokemonInfo);
                     button.setAttribute("data-is-active", "true");
                     button.className = "btn btn-secondary";
                 }
@@ -64,43 +65,44 @@ export class View {
                         cartePokemon.classList.add('d-none');
         });
     }
-    affichagePokemon(pokemonData){
-        const pokemonImage = document.getElementById('pokemonImage');
-        const pokemonName = document.getElementById('pokemonName');
-        const pokemonWeight = document.getElementById('pokemonWeight');
-        const pokemonHeight = document.getElementById('pokemonHeight');
-        const pokemonTypesList = document.getElementById('pokemonTypesList');
-        const pokemonAbilities = document.getElementById('pokemonAbilities');
-        console.log(pokemonData);
-        console.log(pokemonData.abilities);
-        pokemonName.innerText = pokemonData.name;
-        pokemonImage.setAttribute("src", pokemonData.sprites.front_default);
-        pokemonWeight.innerText = pokemonData.weight;
-        pokemonHeight.innerText = pokemonData.height;
-        pokemonTypesList.innerHTML = "";
-        pokemonData.types.forEach(element => {
-            console.log(element.type.name);
-            const span = document.createElement('span');
-            span.className ="badge bg-warning text-dark";
-            span.innerText = element.type.name;
-            pokemonTypesList.append(span);
-        });
-        pokemonAbilities.innerHTML = "";
-        pokemonData.abilities.forEach(element => {
-            retourControleurAbilite(element.ability.url);
-        });
-    }
-
-    affichageAbilete(abilitieData){
-        console.log(abilitieData.name);
-        const dt = document.createElement('dt');
-        dt.innerText = abilitieData.name;
-        dt.className = "clr-bleu";
-        const pokemonAbilities = document.getElementById('pokemonAbilities');
-        const dd = document.createElement('dd');
-        dd.innerText = abilitieData.effect_entries[1].short_effect;
-        pokemonAbilities.append(dt);
-        pokemonAbilities.append(dd);
-    }
 }
 
+function affichagePokemon(pokemonData){
+    const pokemonImage = document.getElementById('pokemonImage');
+    const pokemonName = document.getElementById('pokemonName');
+    const pokemonWeight = document.getElementById('pokemonWeight');
+    const pokemonHeight = document.getElementById('pokemonHeight');
+    const pokemonTypesList = document.getElementById('pokemonTypesList');
+    const pokemonAbilities = document.getElementById('pokemonAbilities');
+    console.log(pokemonData);
+    console.log(pokemonData.abilities);
+    pokemonName.innerText = pokemonData.name;
+    pokemonImage.setAttribute("src", pokemonData.sprites.front_default);
+    pokemonWeight.innerText = pokemonData.weight;
+    pokemonHeight.innerText = pokemonData.height;
+    pokemonTypesList.innerHTML = "";
+    pokemonData.types.forEach(element => {
+        console.log(element.type.name);
+        const span = document.createElement('span');
+        span.className ="badge bg-warning text-dark";
+        span.innerText = element.type.name;
+        pokemonTypesList.append(span);
+    });
+    pokemonAbilities.innerHTML = "";
+    pokemonData.abilities.forEach(async element => {
+    const abilitiesInfo = await initAsync(element.ability.url);
+    affichageAbilete(abilitiesInfo);
+    });
+}
+
+function affichageAbilete(abilitieData){
+    console.log(abilitieData.name);
+    const dt = document.createElement('dt');
+    dt.innerText = abilitieData.name;
+    dt.className = "clr-bleu";
+    const pokemonAbilities = document.getElementById('pokemonAbilities');
+    const dd = document.createElement('dd');
+    dd.innerText = abilitieData.effect_entries[1].short_effect;
+    pokemonAbilities.append(dt);
+    pokemonAbilities.append(dd);
+}
