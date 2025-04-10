@@ -37,6 +37,11 @@ async function updatePokemonButtons() {
     // Si c'est 0 => vider la liste
     // Si c'est autre chose
     //      poker le modele pour récupérer les pokemons dont le type est 1 à 18
+    if (vue.getType() === "0") {
+        vue.removeCard()
+        const pokemonList = document.getElementById('pokemonList');
+        pokemonList.innerHTML =  ""
+    } else{
     const type = "https://pokeapi.co/api/v2/type/" + vue.getType();
     //console.log(type);
     const pokemon = await initAsync(type);
@@ -69,5 +74,5 @@ async function updatePokemonButtons() {
                 });
 
     }});
-})}
+})}}
 
